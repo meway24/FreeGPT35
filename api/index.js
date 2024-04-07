@@ -269,15 +269,16 @@ app.use(enableCORS);
 app.post("/v1/chat/completions", handleChatCompletion);
 
 // 404 handler for unmatched routes
-app.use((req, res) =>
-  res.status(404).send({
-    status: false,
-    error: {
-      message: `The requested endpoint was not found. please make sure to use "http://localhost:3040/v1" as the base URL.`,
-      type: "invalid_request_error",
-    },
-  })
-);
+app.get("/", (req, res) => res.send("hello world"));
+// app.use((req, res) =>
+//   res.status(404).send({
+//     status: false,
+//     error: {
+//       message: `The requested endpoint was not found. please make sure to use "http://localhost:3040/v1" as the base URL.`,
+//       type: "invalid_request_error",
+//     },
+//   })
+// );
 
 // Start the server and the session ID refresh loop
 app.listen(port, () => {
